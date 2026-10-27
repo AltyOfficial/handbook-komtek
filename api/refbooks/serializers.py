@@ -1,3 +1,4 @@
+from drf_spectacular.utils import extend_schema_serializer
 from rest_framework import serializers
 
 from apps.refbooks.models import Refbook, RefbookElement
@@ -11,6 +12,7 @@ class RefbookSerializer(serializers.ModelSerializer):
         fields = ("id", "code", "name")
 
 
+@extend_schema_serializer(many=False)
 class RefbookListResponseSerializer(serializers.Serializer):
     refbooks = RefbookSerializer(many=True)
 
